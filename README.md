@@ -4,7 +4,7 @@
 
 <p align="center">
   <a href="https://vladholubiev.com/serverless-libreoffice">
-    Read this blog post on Medium for details: How to Run LibreOffice in AWS Lambda for Dirty-Cheap PDFs at Scale
+    👉🏻 Read the blog post on Medium: How to Run LibreOffice in AWS Lambda for Dirty-Cheap PDFs at Scale 👈🏻
   </a>
 </p>
 
