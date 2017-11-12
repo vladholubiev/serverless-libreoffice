@@ -25,9 +25,11 @@ This repo contains code used to run the [online demo](https://vladholubiev.com/s
     ├── handler.js
     ├── libreoffice.js
     ├── logic.js
-    ├── package.json
+    ├── package.json <-- put lo.tar.gz in this folder to deploy. Download it below
     └── s3.js
 ```
+
+Compiled and ready to use archive can be downloaded under [Releases section](https://github.com/vladgolubev/serverless-libreoffice/releases).
 
 # How To Help
 

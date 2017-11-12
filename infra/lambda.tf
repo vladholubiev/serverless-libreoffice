@@ -23,7 +23,7 @@ resource "aws_lambda_function" "convert" {
 data "archive_file" "convert" {
   type        = "zip"
   output_path = "./${var.fn_name}.zip"
-  source_dir  = "../../../src/libreoffice"
+  source_dir  = "../src"
 }
 
 resource "aws_s3_bucket_object" "package" {
