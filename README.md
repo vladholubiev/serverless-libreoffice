@@ -1,6 +1,6 @@
 # Serverless LibreOffice
 
-![](https://cdn-images-1.medium.com/max/1600/1*4q_I8VM6Gtmtw6TAjORylA.png)
+[![](https://cdn-images-1.medium.com/max/1600/1*4q_I8VM6Gtmtw6TAjORylA.png)](https://vladholubiev.com/serverless-libreoffice)
 
 <p align="center">
   <a href="https://vladholubiev.com/serverless-libreoffice">
