@@ -55,3 +55,11 @@ And stripped symbols from shared objects.
 Here is the list of: [available RPM packages](https://gist.github.com/vladgolubev/1dac4ed47a5febf110c668074c6b671c)
 and [libraries](https://gist.github.com/vladgolubev/439559fc7597a4fb51eaa9e97b72f319)
 available in AWS Lambda Environment, which can be helpful.
+
+# Similar Projects
+
+* [Docker in AWS Lambda](https://github.com/vladgolubev/docker-in-aws-lambda)
+
+## License
+
+MIT © [Vlad Holubiev](https://vladholubiev.com)
