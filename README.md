@@ -44,6 +44,8 @@ Similar open-source analogue [Statifier](http://statifier.sourceforge.net/) prod
 
 Maybe someone has another idea how to create a single executable from a folder full of shared objects.
 
+**UPD:** TODO: Check out [node-packer](https://github.com/pmq20/node-packer) and [libsquash](https://github.com/pmq20/libsquash) (no FUSE required!)
+
 ## Further Size Reduction
 
 I am not a Linux or C++ expert, so for sure I missed some easy "hacks"
