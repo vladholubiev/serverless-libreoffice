@@ -12,7 +12,12 @@ module.exports.handler = (event, context, cb) => {
 
   return convertFileToPDF(base64File, filename)
     .then(pdfFileURL => {
-      return cb(null, {body: JSON.stringify({pdfFileURL})});
+      return cb(null, {
+        headers: {
+          'Access-Control-Allow-Origin': 'https://vladholubiev.com'
+        },
+        body: JSON.stringify({pdfFileURL})
+      });
     })
     .catch(cb);
 };

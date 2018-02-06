@@ -5,7 +5,7 @@ resource "aws_lambda_function" "convert" {
   role             = "${aws_iam_role.convert.arn}"
   s3_bucket        = "${aws_s3_bucket.serverless_libreoffice_pdf.id}"
   s3_key           = "${aws_s3_bucket_object.package.key}"
-  memory_size      = 1536
+  memory_size      = 2624
   timeout          = 25
   source_code_hash = "${base64sha256(file(data.archive_file.convert.output_path))}"
 
