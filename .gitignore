@@ -3,3 +3,4 @@
 *.tfstate.lock.info
 *.tfstate.backup
 *.backup
+lo.tar.gz
