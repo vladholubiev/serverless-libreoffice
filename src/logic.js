@@ -16,7 +16,10 @@ module.exports.convertFileToPDF = function convertFileToPDF(base64File, filename
   const fileBuffer = new Buffer(base64File, 'base64');
   console.log(`[size:${fileBuffer.length}]`);
 
-  validate(fileBuffer);
+  const fileError = validate(fileBuffer);
+  if (fileError) {
+    return fileError; 
+  }
 
   writeFileSync(`/tmp/${filename}`, fileBuffer);
   console.log(`[written]`);
