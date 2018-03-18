@@ -7,7 +7,7 @@ sudo yum install git autoconf ccache nasm libffi-devel libmpc-devel mpfr-devel \
 	google-crosextra-carlito-fonts liberation-serif-fonts liberation-sans-fonts \
 	mesa-libGL-devel mesa-libGLU-devel libX11-devel libXext-devel libICE-devel \
 	libSM-devel libXrender-devel libxslt-devel gperf fontconfig-devel libpng-devel libxslt-devel \
-	expat-devel libcurl-devel nss-devel nspr-devel libSM-devel openssl-devel -y
+	expat-devel libcurl-devel nss-devel nspr-devel libSM-devel openssl-devel expat-devel.x86_64 -y
 sudo yum groupinstall "Development Tools" -y
 
 # clone libreoffice sources
@@ -18,7 +18,7 @@ cd libreoffice
 ccache --max-size 16 G && ccache -s
 
 # the most important part. Run ./autogen.sh --help to see wha each option means
-./autogen.sh --disable-report-builder --disable-lpsolve --disable-coinmp --disable-pdfimport \
+./autogen.sh --disable-report-builder --disable-lpsolve --disable-coinmp \
 	--enable-mergelibs --disable-odk --disable-gtk --disable-systray --disable-cairo-canvas \
 	--disable-dbus --disable-sdremote --disable-sdremote-bluetooth --disable-gio --disable-randr \
 	--disable-gstreamer-1-0 --disable-cve-tests --disable-cups --disable-extension-update \
