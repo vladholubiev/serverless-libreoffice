@@ -34,5 +34,5 @@ resource "aws_s3_bucket_object" "package" {
 }
 
 resource "aws_cloudwatch_log_group" "convert" {
-  name = "/aws/lambda/${aws_lambda_function.convert.id}"
+  name = "/aws/lambda/${var.env}_${var.fn_name}"
 }
