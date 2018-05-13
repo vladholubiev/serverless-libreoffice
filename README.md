@@ -31,7 +31,9 @@ This repo contains code used to run the [online demo](https://vladholubiev.com/s
 
 Compiled and ready to use archive can be downloaded under [Releases section](https://github.com/vladgolubev/serverless-libreoffice/releases).
 
-# How to compile it yourself on EC2
+# How to compile by yourself
+
+> Check out a comprehensive [step-by-step tutorial](STEP_BY_STEP.md) from 0 to deployed function. 
 
 1. Go to [Lambda Execution Environment and Available Libraries](https://docs.aws.amazon.com/lambda/latest/dg/current-supported-versions.html) page to get the latest AMI id
 2.  Click on [this link](https://console.aws.amazon.com/ec2/v2/home#Images:visibility=public-images;search=amzn-ami-hvm-2017.03.1.20170812-x86_64-gp2) to get AMI id for your region
