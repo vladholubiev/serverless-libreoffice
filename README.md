@@ -75,7 +75,7 @@ available in AWS Lambda Environment, which can be helpful.
 # Similar Projects
 
 * [Docker in AWS Lambda](https://github.com/vladgolubev/docker-in-aws-lambda)
-* [NPM package with bundled LibreOffice for Lambda (85 MB)][https://github.com/vladgolubev/aws-lambda-libreoffice]
+* [NPM package with bundled LibreOffice for Lambda (85 MB)](https://github.com/vladgolubev/aws-lambda-libreoffice)
 
 ## License
 
