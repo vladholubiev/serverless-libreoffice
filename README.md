@@ -29,7 +29,7 @@ This repo contains code used to run the [online demo](https://vladholubiev.com/s
     └── s3.js
 ```
 
-Compiled and ready to use archive can be downloaded under [Releases section](https://github.com/vladgolubev/serverless-libreoffice/releases).
+Compiled and ready to use archive can be downloaded under [Releases section](https://github.com/vladgolubev/serverless-libreoffice/releases). Also check out [NPM package with bundled LibreOffice for Lambda (85 MB)](https://github.com/vladgolubev/aws-lambda-libreoffice)
 
 # How to compile by yourself
 
@@ -44,6 +44,11 @@ Compiled and ready to use archive can be downloaded under [Releases section](htt
 
 * [List of RPM Packages available in AWS Lambda](https://gist.github.com/vladgolubev/1dac4ed47a5febf110c668074c6b671c)
 * [List of Libraries available in AWS Lambda](https://gist.github.com/vladgolubev/439559fc7597a4fb51eaa9e97b72f319)
+
+# Related Projects
+
+* [Docker in AWS Lambda](https://github.com/vladgolubev/docker-in-aws-lambda)
+* [NPM package with bundled LibreOffice for Lambda (85 MB)](https://github.com/vladgolubev/aws-lambda-libreoffice)
 
 # How To Help
 
@@ -71,11 +76,6 @@ And stripped symbols from shared objects.
 Here is the list of: [available RPM packages](https://gist.github.com/vladgolubev/1dac4ed47a5febf110c668074c6b671c)
 and [libraries](https://gist.github.com/vladgolubev/439559fc7597a4fb51eaa9e97b72f319)
 available in AWS Lambda Environment, which can be helpful.
-
-# Similar Projects
-
-* [Docker in AWS Lambda](https://github.com/vladgolubev/docker-in-aws-lambda)
-* [NPM package with bundled LibreOffice for Lambda (85 MB)](https://github.com/vladgolubev/aws-lambda-libreoffice)
 
 ## License
 
