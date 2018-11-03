@@ -29,7 +29,7 @@ This repo contains code used to run the [online demo](https://vladholubiev.com/s
     └── s3.js
 ```
 
-Compiled and ready to use archive can be downloaded under [Releases section](https://github.com/vladgolubev/serverless-libreoffice/releases). Also check out [NPM package with bundled LibreOffice for Lambda (85 MB)](https://github.com/vladgolubev/aws-lambda-libreoffice)
+Compiled and ready to use archive can be downloaded under [Releases section](https://github.com/vladgolubev/serverless-libreoffice/releases). Also check out [NPM package with bundled LibreOffice for Lambda (85 MB)](https://github.com/shelfio/aws-lambda-libreoffice)
 
 # How to compile by yourself
 
@@ -48,7 +48,7 @@ Compiled and ready to use archive can be downloaded under [Releases section](htt
 # Related Projects
 
 * [Docker in AWS Lambda](https://github.com/vladgolubev/docker-in-aws-lambda)
-* [NPM package with bundled LibreOffice for Lambda (85 MB)](https://github.com/vladgolubev/aws-lambda-libreoffice)
+* [NPM package with bundled LibreOffice for Lambda (85 MB)](https://github.com/shelfio/aws-lambda-libreoffice)
 
 # How To Help
 
