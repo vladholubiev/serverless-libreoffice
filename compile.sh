@@ -7,7 +7,8 @@ sudo yum install git autoconf ccache nasm libffi-devel libmpc-devel mpfr-devel \
 	google-crosextra-carlito-fonts liberation-serif-fonts liberation-sans-fonts \
 	mesa-libGL-devel mesa-libGLU-devel libX11-devel libXext-devel libICE-devel \
 	libSM-devel libXrender-devel libxslt-devel gperf fontconfig-devel libpng-devel \
-	expat-devel libcurl-devel nss-devel nspr-devel openssl-devel expat-devel.x86_64 -y
+	expat-devel libcurl-devel nss-devel nspr-devel openssl-devel expat-devel.x86_64 \
+	perl-Digest-MD5 -y
 sudo yum groupinstall "Development Tools" -y
 
 # clone libreoffice sources
