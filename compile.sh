@@ -21,18 +21,55 @@ git checkout libreoffice-6.2.1.2
 ccache --max-size 16 G && ccache -s
 
 # the most important part. Run ./autogen.sh --help to see wha each option means
-./autogen.sh --disable-report-builder --disable-lpsolve --disable-coinmp \
-	--enable-mergelibs --disable-odk --disable-gtk --disable-cairo-canvas \
-	--disable-dbus --disable-sdremote --disable-sdremote-bluetooth --disable-gio --disable-randr \
-	--disable-gstreamer-1-0 --disable-cve-tests --disable-cups --disable-extension-update \
-	--disable-postgresql-sdbc --disable-lotuswordpro --disable-firebird-sdbc --disable-scripting-beanshell \
-	--disable-scripting-javascript --disable-largefile --without-helppack-integration \
-	--without-system-dicts --without-java --disable-gtk3 --disable-dconf --disable-gstreamer-0-10 \
-	--disable-firebird-sdbc --without-fonts --without-junit --with-theme="no" --disable-evolution2 \
-	--disable-avahi --without-myspell-dicts --with-galleries="no" \
-	--disable-kde4 --with-system-expat --with-system-libxml --with-system-nss \
-	--disable-introspection --without-krb5 --disable-python --disable-pch \
-	--with-system-openssl --with-system-curl --disable-ooenv --disable-dependency-tracking
+./autogen.sh \
+    --disable-avahi \
+    --disable-cairo-canvas \
+    --disable-coinmp \
+	--disable-cups \
+	--disable-cve-tests \
+	--disable-dbus \
+	--disable-dconf \
+	--disable-dependency-tracking \
+	--disable-evolution2 \
+	--disable-extension-update \
+	--disable-firebird-sdbc \
+	--disable-firebird-sdbc \
+	--disable-gio \
+	--disable-gstreamer-0-10 \
+	--disable-gstreamer-1-0 \
+	--disable-gtk \
+	--disable-gtk3 \
+	--disable-introspection \
+	--disable-kde4 \
+	--disable-largefile \
+	--disable-lotuswordpro \
+	--disable-lpsolve \
+	--disable-odk \
+	--disable-ooenv \
+	--disable-pch \
+	--disable-postgresql-sdbc \
+	--disable-python \
+	--disable-randr \
+	--disable-report-builder \
+	--disable-scripting-beanshell \
+	--disable-scripting-javascript \
+	--disable-sdremote \
+	--disable-sdremote-bluetooth \
+	--enable-mergelibs \
+	--with-galleries="no" \
+	--with-system-curl \
+	--with-system-expat \
+	--with-system-libxml \
+	--with-system-nss \
+	--with-system-openssl \
+	--with-theme="no" \
+	--without-fonts \
+	--without-helppack-integration \
+	--without-java \
+	--without-junit \
+	--without-krb5 \
+	--without-myspell-dicts \
+	--without-system-dicts
 
 # this will take 0-2 hours to compile, depends on your machine
 make
