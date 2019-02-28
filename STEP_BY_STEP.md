@@ -119,6 +119,7 @@ I'll use node.js as my language of choice of this example. A couple of things th
 
 All of these is a mere 30 lines of code.
 
+Javascript Version
 ```javascript
 const {writeFileSync, readFileSync} = require('fs');
 const {execSync} = require('child_process');
@@ -151,12 +152,40 @@ exports.handler = async ({filename}) => {
 };
 ```
 
+Python Version
+```python
+import boto3
+import os
+
+s3_bucket = boto3.resource("s3").Bucket("lambda-libreoffice-demo")
+os.system("curl https://s3.amazonaws.com/lambda-libreoffice-demo/lo.tar.gz -o /tmp/lo.tar.gz && cd /tmp && tar -xf /tmp/lo.tar.gz")
+convertCommand = "instdir/program/soffice --headless --invisible --nodefault --nofirststartwizard --nolockcheck --nologo --norestore --convert-to pdf --outdir /tmp"
+
+def lambda_handler(event,context):
+  inputFileName = event['filename']
+  # Put object wants to be converted in s3
+  with open(f'/tmp/{inputFileName}', 'wb') as data:
+      s3_bucket.download_fileobj(inputFileName, data)
+
+  # Execute libreoffice to convert input file
+  os.system(f"cd /tmp && {convertCommand} {inputFileName}")
+
+  # Save converted object in S3
+  outputFileName, _ = os.path.splitext(inputFileName)
+  outputFileName = outputFileName  + ".pdf"
+  f = open(f"/tmp/{outputFileName}","rb")
+  s3_bucket.put_object(Key=outputFileName,Body=f,ACL="public-read")
+  f.close()
+```
+
 Conversion output format is controlled via `--convert-to pdf` CLI argument. You can play around and change it to `docx`, 
 for example. Note that for demo purposes S3 bucket name is hard-coded and converted file wll be public.
-Save the code under `code.js` file name and archive:
+Save the code under `code.js` or `code.py` file name and archive:
 
 ```bash
-$ zip code.zip code.js
+$ zip code.zip code.js  # for Javascript
+# OR
+$ zip code.zip code.py  # for Python
 ```
 
 Finally, you're ready to create a Lambda function! Don't forget to replace `XXXXXXXXX` with `lambda_execution_role_arn`
