@@ -2,13 +2,41 @@
 
 # install basic stuff required for compilation
 sudo yum-config-manager --enable epel
-sudo yum install git autoconf ccache nasm libffi-devel libmpc-devel mpfr-devel \
-	gmp-devel libicu-devel icu python34-devel google-crosextra-caladea-fonts \
-	google-crosextra-carlito-fonts liberation-serif-fonts liberation-sans-fonts \
-	mesa-libGL-devel mesa-libGLU-devel libX11-devel libXext-devel libICE-devel \
-	libSM-devel libXrender-devel libxslt-devel gperf fontconfig-devel libpng-devel \
-	expat-devel libcurl-devel nss-devel nspr-devel openssl-devel expat-devel.x86_64 \
-	perl-Digest-MD5 -y
+sudo yum install \
+    autoconf \
+    ccache \
+    expat-devel \
+    expat-devel.x86_64 \
+    fontconfig-devel \
+    git \
+    gmp-devel \
+	google-crosextra-caladea-fonts \
+	google-crosextra-carlito-fonts \
+	gperf \
+	icu \
+	libcurl-devel \
+	liberation-sans-fonts \
+	liberation-serif-fonts \
+	libffi-devel \
+	libICE-devel \
+	libicu-devel \
+	libmpc-devel \
+	libpng-devel \
+	libSM-devel \
+	libX11-devel \
+	libXext-devel \
+	libXrender-devel \
+	libxslt-devel \
+	mesa-libGL-devel \
+	mesa-libGLU-devel \
+	mpfr-devel \
+	nasm \
+	nspr-devel \
+	nss-devel \
+	openssl-devel \
+	perl-Digest-MD5 \
+	python34-devel \
+	-y
 sudo yum groupinstall "Development Tools" -y
 
 # clone libreoffice sources
