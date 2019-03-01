@@ -46,6 +46,9 @@ cd libreoffice
 # set this cache if you are going to compile several times
 ccache --max-size 32 G && ccache -s
 
+# See https://git.io/fhAJ0
+sudo yum remove -y gcc48-c++ && sudo yum install -y gcc72-c++
+
 # the most important part. Run ./autogen.sh --help to see wha each option means
 ./autogen.sh \
     --disable-avahi \
