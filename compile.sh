@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# see https://stackoverflow.com/questions/2499794/how-to-fix-a-locale-setting-warning-from-perl
+export LC_CTYPE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
 # install basic stuff required for compilation
 sudo yum-config-manager --enable epel
 sudo yum install -y \
