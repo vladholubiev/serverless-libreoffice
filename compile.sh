@@ -44,7 +44,7 @@ mv core-libreoffice-6.2.1.2 libreoffice
 cd libreoffice
 
 # set this cache if you are going to compile several times
-ccache --max-size 16 G && ccache -s
+ccache --max-size 32 G && ccache -s
 
 # the most important part. Run ./autogen.sh --help to see wha each option means
 ./autogen.sh \
