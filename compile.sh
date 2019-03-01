@@ -43,6 +43,9 @@ curl -L https://github.com/LibreOffice/core/archive/libreoffice-6.2.1.2.tar.gz |
 mv core-libreoffice-6.2.1.2 libreoffice
 cd libreoffice
 
+# see https://ask.libreoffice.org/en/question/72766/sourcesver-missing-while-compiling-from-source/
+echo "lo_sources_ver=6.2.1.2" >> sources.ver
+
 # set this cache if you are going to compile several times
 ccache --max-size 32 G && ccache -s
 
