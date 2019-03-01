@@ -2,7 +2,7 @@
 
 # install basic stuff required for compilation
 sudo yum-config-manager --enable epel
-sudo yum install \
+sudo yum install -y \
     autoconf \
     ccache \
     expat-devel \
@@ -35,12 +35,11 @@ sudo yum install \
 	nss-devel \
 	openssl-devel \
 	perl-Digest-MD5 \
-	python34-devel \
-	-y
-sudo yum groupinstall "Development Tools" -y
+	python34-devel
+sudo yum groupinstall -y "Development Tools"
 
 # clone libreoffice sources
-git clone --depth=1 git://anongit.freedesktop.org/libreoffice/core libreoffice
+git clone --depth=1 https://gerrit.libreoffice.org/core libreoffice
 cd libreoffice
 git fetch --tags
 git checkout libreoffice-6.2.1.2
