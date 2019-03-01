@@ -39,10 +39,9 @@ sudo yum install -y \
 sudo yum groupinstall -y "Development Tools"
 
 # clone libreoffice sources
-git clone --depth=1 https://gerrit.libreoffice.org/core libreoffice
+curl -L https://github.com/LibreOffice/core/archive/libreoffice-6.2.1.2.tar.gz | tar -xz
+mv core-libreoffice-6.2.1.2 libreoffice
 cd libreoffice
-git fetch --tags
-git checkout libreoffice-6.2.1.2
 
 # set this cache if you are going to compile several times
 ccache --max-size 16 G && ccache -s
