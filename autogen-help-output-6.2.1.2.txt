@@ -1,0 +1,1239 @@
+autogen.sh - libreoffice configuration helper
+   --clean        forcibly re-generate configuration
+   --best-effort  don't fail on un-known configure with/enable options
+
+Other arguments passed directly to configure:
+
+`configure' configures LibreOffice 6.2.1.2 to adapt to many kinds of systems.
+
+Usage: ./configure [OPTION]... [VAR=VALUE]...
+
+To assign environment variables (e.g., CC, CFLAGS...), specify them as
+VAR=VALUE.  See below for descriptions of some of the useful variables.
+
+Defaults for the options are specified in brackets.
+
+Configuration:
+  -h, --help              display this help and exit
+      --help=short        display options specific to this package
+      --help=recursive    display the short help of all the included packages
+  -V, --version           display version information and exit
+  -q, --quiet, --silent   do not print `checking ...' messages
+      --cache-file=FILE   cache test results in FILE [disabled]
+  -C, --config-cache      alias for `--cache-file=config.cache'
+  -n, --no-create         do not create output files
+      --srcdir=DIR        find the sources in DIR [configure dir or `..']
+
+Installation directories:
+  --prefix=PREFIX         install architecture-independent files in PREFIX
+                          [/usr/local]
+  --exec-prefix=EPREFIX   install architecture-dependent files in EPREFIX
+                          [PREFIX]
+
+By default, `make install' will install all the files in
+`/usr/local/bin', `/usr/local/lib' etc.  You can specify
+an installation prefix other than `/usr/local' using `--prefix',
+for instance `--prefix=$HOME'.
+
+For better control, use the options below.
+
+Fine tuning of the installation directories:
+  --bindir=DIR            user executables [EPREFIX/bin]
+  --sbindir=DIR           system admin executables [EPREFIX/sbin]
+  --libexecdir=DIR        program executables [EPREFIX/libexec]
+  --sysconfdir=DIR        read-only single-machine data [PREFIX/etc]
+  --sharedstatedir=DIR    modifiable architecture-independent data [PREFIX/com]
+  --localstatedir=DIR     modifiable single-machine data [PREFIX/var]
+  --libdir=DIR            object code libraries [EPREFIX/lib]
+  --includedir=DIR        C header files [PREFIX/include]
+  --oldincludedir=DIR     C header files for non-gcc [/usr/include]
+  --datarootdir=DIR       read-only arch.-independent data root [PREFIX/share]
+  --datadir=DIR           read-only architecture-independent data [DATAROOTDIR]
+  --infodir=DIR           info documentation [DATAROOTDIR/info]
+  --localedir=DIR         locale-dependent data [DATAROOTDIR/locale]
+  --mandir=DIR            man documentation [DATAROOTDIR/man]
+  --docdir=DIR            documentation root [DATAROOTDIR/doc/libreoffice]
+  --htmldir=DIR           html documentation [DOCDIR]
+  --dvidir=DIR            dvi documentation [DOCDIR]
+  --pdfdir=DIR            pdf documentation [DOCDIR]
+  --psdir=DIR             ps documentation [DOCDIR]
+
+X features:
+  --x-includes=DIR    X include files are in DIR
+  --x-libraries=DIR   X library files are in DIR
+
+System types:
+  --build=BUILD     configure for building on BUILD [guessed]
+  --host=HOST       cross-compile to build programs to run on HOST [BUILD]
+
+Optional Features:
+  --disable-option-checking  ignore unrecognized --enable/--with options
+  --disable-FEATURE       do not include FEATURE (same as --enable-FEATURE=no)
+  --enable-FEATURE[=ARG]  include FEATURE [ARG=yes]
+  --enable-fuzz-options   Randomly enable or disable each of those
+                          configurable options that are supposed to be freely
+                          selectable without interdependencies, or where bad
+                          interaction from interdependencies is automatically
+                          avoided.
+
+  --enable-ios-simulator  build i386 or x86_64 for ios simulator
+
+  --enable-ios-libreofficelight-app
+                          When building for iOS, build stuff relevant only for
+                          the 'LibreOfficeLight' app (in
+                          ios/LibreOfficeLight). Note that this app is not
+                          known to work in any useful manner, and also that
+                          its actual build (in Xcode) requires some obvious
+                          modifications to the project.
+
+  --disable-extension-integration
+                          Disable integration of the built extensions in the
+                          installer of the product. Use this switch to disable
+                          the integration.
+
+  --disable-avmedia       Disable displaying and inserting AV media in
+                          documents. Work in progress, use only if you are
+                          hacking on it.
+
+  --disable-database-connectivity
+                          Disable various database connectivity. Work in
+                          progress, use only if you are hacking on it.
+
+  --disable-extensions    Disable all add-on extension functionality. Work in
+                          progress, use only if you are hacking on it.
+
+  --disable-scripting     Disable BASIC, Java and Python. Work in progress,
+                          use only if you are hacking on it.
+
+  --disable-dynamic-loading
+                          Disable any use of dynamic loading of code. Work in
+                          progress, use only if you are hacking on it.
+
+  --disable-report-builder
+                          Disable the Report Builder.
+
+  --enable-ext-wiki-publisher
+                          Enable the Wiki Publisher extension.
+
+  --disable-lpsolve       Disable compilation of the lp solve solver
+
+  --disable-coinmp        Disable compilation of the CoinMP solver
+
+  --disable-pdfimport     Disable building the PDF import feature.
+
+  --disable-pdfium        Disable building PDFium.
+
+  --enable-mergelibs      Merge several of the smaller libraries into one big,
+                          "merged", one.
+
+  --enable-breakpad       Enables breakpad for crash reporting.
+
+  --disable-fetch-external
+                          Disables fetching external tarballs from web
+                          sources.
+
+  --enable-fuzzers        Enables building libfuzzer targets for fuzz testing.
+
+  --enable-pch            Enables precompiled header support for C++. Forced
+                          default on Windows/VC build
+
+  --enable-epm            LibreOffice includes self-packaging code, that
+                          requires epm, however epm is useless for large scale
+                          package building.
+
+  --disable-odk           LibreOffice includes an ODK, office development kit
+                          which some packagers may wish to build without.
+
+  --enable-mpl-subset     Don't compile any pieces which are not MPL or more
+                          liberally licensed
+
+  --enable-evolution2     Allows the built-in evolution 2 addressbook
+                          connectivity build to be enabled.
+
+  --enable-avahi          Determines whether to use Avahi to advertise Impress
+                          to remote controls.
+
+  --enable-werror         Turn warnings to errors. (Has no effect in modules
+                          where the treating of warnings as errors is disabled
+                          explicitly.)
+  --enable-assert-always-abort
+                          make assert() failures abort even when building
+                          without --enable-debug or --enable-dbgutil.
+  --enable-dbgutil        Provide debugging support from --enable-debug and
+                          include additional debugging utilities such as
+                          object counting or more expensive checks. This is
+                          the recommended option for developers. Note that
+                          this makes the build ABI incompatible, it is not
+                          possible to mix object files or libraries from a
+                          --enable-dbgutil and a --disable-dbgutil build.
+  --enable-debug          Include debugging information, disable compiler
+                          optimization and inlining plus extra debugging code
+                          like assertions. Extra large build! (enables -g
+                          compiler flag).
+  --enable-split-debug    Uses split debug information (-gsplit-dwarf compile
+                          flag). Saves disk space and build time, but requires
+                          tools that support it (both build tools and
+                          debuggers).
+  --enable-gdb-index      Creates debug information in the gdb index format,
+                          which makes gdb start faster. Requires the gold or
+                          lld linker.
+  --enable-sal-log        Make SAL_INFO and SAL_WARN calls do something even
+                          in a non-debug build.
+  --enable-selective-debuginfo
+                          If --enable-debug or --enable-dbgutil is used, build
+                          debugging information (-g compiler flag) only for
+                          the specified gbuild build targets (where all means
+                          everything, - prepended means not to enable, /
+                          appended means everything in the directory; there is
+                          no ordering, more specific overrides more general,
+                          and disabling takes precedence). Example:
+                          --enable-selective-debuginfo="all -sw/ -Library_sc".
+  --enable-symbols        Generate debug information. By default, enabled for
+                          --enable-debug and --enable-dbgutil, disabled
+                          otherwise.
+  --disable-optimized     Whether to compile with optimization flags. By
+                          default, disabled for --enable-debug and
+                          --enable-dbgutil, enabled otherwise.
+  --disable-runtime-optimizations
+                          Statically disable certain runtime optimizations
+                          (like rtl/alloc.h or JVM JIT) that are known to
+                          interact badly with certain dynamic analysis tools
+                          (like -fsanitize=address or Valgrind). By default,
+                          disabled iff CC contains "-fsanitize=*". (For
+                          Valgrind, those runtime optimizations are typically
+                          disabled dynamically via RUNNING_ON_VALGRIND.)
+  --enable-compiler-plugins
+                          Enable compiler plugins that will perform additional
+                          checks during building. Enabled automatically by
+                          --enable-dbgutil. Use
+                          --enable-compiler-plugins=debug to also enable debug
+                          code in the plugins.
+  --disable-ooenv         Disable ooenv for the instdir installation.
+  --disable-libnumbertext Disable use of numbertext external library.
+  --enable-lto            Enable link-time optimization. Suitable for
+                          (optimised) product builds. Building might take
+                          longer but libraries and executables are optimized
+                          for speed. For GCC, best to use the 'gold' linker.
+                          For MSVC, this option is broken at the moment. This
+                          is experimental work in progress that shouldn't be
+                          used unless you are working on it.)
+  --enable-python=<no/auto/system/internal/fully-internal>
+                          Enables or disables Python support at run-time. Also
+                          specifies what Python to use. 'auto' is the default.
+                          'fully-internal' even forces the internal version
+                          for uses of Python during the build.
+  --disable-gtk           Determines whether to use Gtk+ vclplug on platforms
+                          where Gtk+ is available.
+  --disable-gtk3          Determines whether to use Gtk+ 3.0 vclplug on
+                          platforms where Gtk+ 3.0 is available.
+  --enable-split-app-modules
+                          Split file lists for app modules, e.g. base, calc.
+                          Has effect only with make distro-pack-install
+  --enable-split-opt-features
+                          Split file lists for some optional features, e.g.
+                          pyuno, testtool. Has effect only with make
+                          distro-pack-install
+  --disable-cairo-canvas  Determines whether to build the Cairo canvas on
+                          platforms where Cairo is available.
+  --disable-dbus          Determines whether to enable features that depend on
+                          dbus. e.g. Presentation mode screensaver control,
+                          bluetooth presentation control, automatic font
+                          install
+  --disable-sdremote      Determines whether to enable Impress remote control
+                          (i.e. the server component).
+  --disable-sdremote-bluetooth
+                          Determines whether to build sdremote with bluetooth
+                          support. Requires dbus on Linux.
+  --disable-gio           Determines whether to use the GIO support.
+  --enable-kde4           Determines whether to use Qt4/KDE4 vclplug on
+                          platforms where Qt4 and KDE4 are available.
+  --enable-qt5            Determines whether to use Qt5 vclplug on platforms
+                          where Qt5 is available.
+  --enable-kde5           Determines whether to use Qt5/KF5 vclplug on
+                          platforms where Qt5 and KF5 are available.
+  --enable-gtk3-kde5      Determines whether to use Gtk3 vclplug with KDE file
+                          dialogs on platforms where Gtk3, Qt5 and Plasma is
+                          available.
+  --disable-gui           Disable use of X11 or Wayland to reduce
+                          dependencies. Not related to the --headless
+                          command-line option. Not related to LibreOffice
+                          Online functionality. Don't use unless you are
+                          certain you need to. Nobody will help you if you
+                          insist on trying this and run into problems.
+  --disable-randr         Disable RandR support in the vcl project.
+  --disable-gstreamer-1-0 Disable building with the new gstreamer 1.0 avmedia
+                          backend.
+  --enable-gstreamer-0-10 Enable building with the gstreamer 0.10 avmedia
+                          backend.
+  --enable-vlc            Enable building with the (experimental) VLC avmedia
+                          backend.
+  --disable-neon          Disable neon and the compilation of webdav binding.
+  --enable-eot            Enable support for Embedded OpenType fonts.
+  --disable-cve-tests     Prevent CVE tests to be executed
+  --enable-chart-tests    Executes chart XShape tests. In a perfect world
+                          these tests would be stable and everyone could run
+                          them, in reality it is best to run them only on a
+                          few machines that are known to work and maintained
+                          by people who can judge if a test failure is a
+                          regression or not.
+  --enable-build-unowinreg
+                          Do not use the prebuilt unowinreg.dll. Build it
+                          instead. The MinGW C++ compiler is needed on Linux.
+  --enable-build-opensymbol
+                          Do not use the prebuilt opens___.ttf. Build it
+                          instead. This needs fontforge installed.
+  --enable-dependency-tracking
+                          Do not reject slow dependency extractors.
+  --disable-dependency-tracking
+                          Disables generation of dependency information.
+                          Speed up one-time builds.
+  --enable-icecream       Use the 'icecream' distributed compiling tool to
+                          speedup the compilation. It defaults to
+                          /opt/icecream for the location of the icecream
+                          gcc/g++ wrappers, you can override that using
+                          --with-gcc-home=/the/path switch.
+  --enable-ld=<linker>    Use the specified linker. Both 'gold' and 'lld'
+                          linkers generally use less memory and link faster.
+  --disable-cups          Do not build cups support.
+
+  --disable-ccache        Do not try to use ccache automatically. By default,
+                          unless on Windows, we will try to detect if ccache
+                          is available; in that case if CC/CXX are not yet
+                          set, and --enable-icecream is not given, we attempt
+                          to use ccache. --disable-ccache disables ccache
+                          completely.
+  --enable-64-bit         Build a 64-bit LibreOffice on platforms where the
+                          normal build is 32-bit. At the moment meaningful
+                          only for Windows.
+  --enable-online-update  Enable the online update service that will check for
+                          new versions of LibreOffice. By default, it is
+                          enabled on Windows and Mac, disabled on Linux. If
+                          the value is "mar", the experimental Mozilla-like
+                          update will be enabled instead of the traditional
+                          update mechanism.
+  --disable-extension-update
+                          Disable possibility to update installed extensions.
+  --enable-release-build  Enable release build. Note that the "release build"
+                          choice is orthogonal to whether symbols are present,
+                          debug info is generated, or optimization is done.
+                          See
+                          http://wiki.documentfoundation.org/Development/DevBuild
+  --enable-windows-build-signing
+                          Enable signing of windows binaries (*.exe, *.dll)
+  --enable-silent-msi     Enable MSI with LIMITUI=1 (silent install).
+  --enable-macosx-code-signing=<identity>
+                          Sign executables, dylibs, frameworks and the app
+                          bundle. If you don't provide an identity the first
+                          suitable certificate in your keychain is used.
+  --enable-macosx-package-signing=<identity>
+                          Create a .pkg suitable for uploading to the Mac App
+                          Store and sign it. If you don't provide an identity
+                          the first suitable certificate in your keychain is
+                          used.
+  --enable-macosx-sandbox Make the app bundle run in a sandbox. Requires code
+                          signing. Is required by apps distributed in the Mac
+                          App Store, and implies adherence to App Store rules.
+  --enable-readonly-installset
+                          Prevents any attempts by LibreOffice to write into
+                          its installation. That means at least that no
+                          "system-wide" extensions can be added. Partly
+                          experimental work in progress, probably not fully
+                          implemented (but is useful for sandboxed macOS
+                          builds).
+  --disable-postgresql-sdbc
+                          Disable the build of the PostgreSQL-SDBC driver.
+
+  --disable-lotuswordpro  Disable the build of the Lotus Word Pro filter.
+  --disable-firebird-sdbc Disable the build of the Firebird-SDBC driver if it
+                          doesn't compile for you.
+  --enable-bogus-pkg-config
+                          MACOSX only: on MacOSX pkg-config can cause trouble.
+                          by default if one is found in the PATH, an error is
+                          issued. This flag turn that error into a warning.
+  --disable-openssl       Disable using libssl/libcrypto from OpenSSL. If
+                          disabled, components will either use GNUTLS or NSS.
+                          Work in progress, use only if you are hacking on it.
+  --enable-cipher-openssl-backend
+                          Enable using OpenSSL as the actual implementation of
+                          the rtl/cipher.h functionality. Requires
+                          --enable-openssl.
+  --enable-library-bin-tar
+                          Enable the building and reused of tarball of binary
+                          build for some 'external' libraries. Some libraries
+                          can save their build result in a tarball stored in
+                          TARFILE_LOCATION. That binary tarball is uniquely
+                          identified by the source tarball, the content of the
+                          config_host.mk file and the content of the top-level
+                          directory in core for that library If this option is
+                          enabled, then if such a tarfile exist, it will be
+                          untarred instead of the source tarfile, and the
+                          build step will be skipped for that library. If a
+                          proper tarfile does not exist, then the normal
+                          source-based build is done for that library and a
+                          proper binary tarfile is created for the next time.
+  --disable-dconf         Disable the dconf configuration backend (enabled by
+                          default where available).
+  --enable-formula-logger Enable formula logger for logging formula
+                          calculation flow in Calc.
+
+  --enable-bundle-mariadb When using MariaDB/MySQL libraries already on
+                          system, bundle them with the MariaDB
+                          Connector/LibreOffice.
+
+  --disable-scripting-beanshell
+                          Disable support for scripts in BeanShell.
+  --disable-scripting-javascript
+                          Disable support for scripts in JavaScript.
+  --disable-largefile     omit support for large files
+  --disable-c++17         Do not attempt to run GCC/Clang in C++17 mode
+                          (needed for Coverity).
+
+  --enable-introspection=[no/auto/yes]
+                          Enable introspection for this build
+  --enable-ext-ct2n       Enable the ConvertTextToNumber extension
+
+  --enable-ext-numbertext Enable the Numbertext extension
+
+  --enable-ext-nlpsolver  Enable the NLPSolver extension
+
+  --enable-ext-languagetool
+                          Enable the LanguageTool extension
+
+
+Optional Packages:
+  --with-PACKAGE[=ARG]    use PACKAGE [ARG=yes]
+  --without-PACKAGE       do not use PACKAGE (same as --with-PACKAGE=no)
+  --with-android-ndk      Specify location of the Android Native Development
+                          Kit. Mandatory when building for Android.
+  --with-android-ndk-toolchain-version
+                          Specify which toolchain version to use, of those
+                          present in the Android NDK you are using. The
+                          default (and only supported version currently) is
+                          "clang5.0"
+  --with-android-sdk      Specify location of the Android SDK. Mandatory when
+                          building for Android.
+  --with-valgrind         Make availability of Valgrind headers a hard
+                          requirement.
+  --with-update-config=/tmp/update.ini
+                          Path to the update config ini file
+  --with-macosx-bundle-identifier=tld.mumble.orifice.TheOffice
+                          Define the OS X bundle identifier. Default is the
+                          somewhat weird org.libreoffice.script ("script",
+                          huh?).
+  --with-product-name='My Own Office Suite'
+                          Define the product name. Default is LibreOffice.
+  --with-package-version='3.1.4.5'
+                          Define the package version. Default is
+                          6.2.1.2. Use only if you distribute an
+                          own build for macOS.
+  --with-gcc-home         Specify the location of gcc/g++ manually. This can
+                          be used in conjunction with --enable-icecream when
+                          icecream gcc/g++ wrappers are installed in a
+                          non-default path.
+  --with-gnu-patch        Specify location of GNU patch on Solaris or FreeBSD.
+  --with-build-platform-configure-options
+                          Specify options for the configure script run for the
+                          *build* platform in a cross-compilation
+  --with-gnu-cp           Specify location of GNU cp on Solaris or FreeBSD.
+  --with-external-tar=<TARFILE_PATH>
+                          Specify an absolute path of where to find (and
+                          store) tarfiles.
+  --with-referenced-git=<OTHER_CHECKOUT_DIR>
+                          Specify another checkout directory to reference.
+                          This makes use of git submodule update --reference,
+                          and saves a lot of diskspace when having multiple
+                          trees side-by-side.
+  --with-linked-git=<submodules repo basedir>
+                          Specify a directory where the repositories of
+                          submodules are located. This uses a method similar
+                          to git-new-workdir to get submodules.
+  --with-galleries        Specify how galleries should be built. It is
+                          possible either to build these internally from
+                          source ("build"), or to disable them ("no")
+  --with-theme="theme1 theme2..."
+                          Choose which themes to include. By default those
+                          themes with an '*' are included. Possible choices:
+                          *breeze, *breeze_dark, *breeze_svg, *colibre,
+                          *colibre_svg, *elementary, *elementary_svg,
+                          *karasa_jaga, *sifr, *sifr_dark, *tango.
+  --without-helppack-integration
+                          It will not integrate the helppacks to the installer
+                          of the product. Please use this switch to use the
+                          online help or separate help packages.
+  --without-fonts         LibreOffice includes some third-party fonts to
+                          provide a reliable basis for help content,
+                          templates, samples, etc. When these fonts are
+                          already known to be available on the system then you
+                          should use this option.
+  --with-epm              Decides which epm to use. Default is to use the one
+                          from the system if one is built. When either this is
+                          not there or you say =internal epm will be built.
+  --with-package-format   Specify package format(s) for LibreOffice
+                          installation sets. The implicit
+                          --without-package-format leads to no installation
+                          sets being generated. Possible values: aix, archive,
+                          bsd, deb, dmg, installed, msi, pkg, and rpm.
+                          Example: --with-package-format='deb rpm'
+  --with-tls              Decides which TLS/SSL and cryptographic
+                          implementations to use for LibreOffice's code.
+                          Notice that this doesn't apply for depending
+                          libraries like "neon", for example. Default is to
+                          use OpenSSL although NSS is also possible. Notice
+                          that selecting NSS restricts the usage of OpenSSL in
+                          LO's code but selecting OpenSSL doesn't restrict by
+                          now the usage of NSS in LO's code. Possible values:
+                          openssl, nss. Example: --with-tls="nss"
+  --with-system-libs      Use libraries already on system -- enables all
+                          --with-system-* flags.
+  --with-system-bzip2     Use bzip2 already on system. Used only when
+                          --enable-online-update=mar
+  --with-system-headers   Use headers already on system -- enables all
+                          --with-system-* flags for external packages whose
+                          headers are the only entities used i.e.
+                          boost/odbc/sane-header(s).
+  --without-system-jars   When building with --with-system-libs, also the
+                          needed jars are expected on the system. Use this to
+                          disable that
+  --with-system-cairo     Use cairo libraries already on system. Happens
+                          automatically for (implicit) --enable-gtk and for
+                          --enable-gtk3.
+  --with-system-epoxy     Use epoxy libraries already on system. Happens
+                          automatically for --enable-gtk3.
+  --with-myspell-dicts    Adds myspell dictionaries to the LibreOffice
+                          installation set
+  --without-system-dicts  Do not use dictionaries from system paths.
+  --with-external-dict-dir
+                          Specify external dictionary dir.
+  --with-external-hyph-dir
+                          Specify external hyphenation pattern dir.
+  --with-external-thes-dir
+                          Specify external thesaurus dir.
+  --with-system-zlib      Use zlib already on system.
+  --with-system-jpeg      Use jpeg already on system.
+  --with-system-clucene   Use clucene already on system.
+  --with-system-expat     Use expat already on system.
+  --with-system-libxml    Use libxml/libxslt already on system.
+  --with-system-icu       Use icu already on system.
+  --with-system-ucpp      Use ucpp already on system.
+  --with-system-openldap  Use the OpenLDAP LDAP SDK already on system.
+  --with-system-poppler   Use system poppler (only needed for PDF import).
+  --with-system-gpgmepp   Use gpgmepp already on system
+  --with-system-apache-commons
+                          Use Apache commons libraries already on system.
+  --with-system-mariadb   Use MariaDB/MySQL libraries already on system.
+  --with-system-postgresql
+                          Use PostgreSQL libraries already on system, for
+                          building the PostgreSQL-SDBC driver. If pg_config is
+                          not in PATH, use PGCONFIG to point to it.
+  --with-libpq-path=<absolute path to your libpq installation>
+                          Use this PostgreSQL C interface (libpq) installation
+                          for building the PostgreSQL-SDBC extension.
+  --with-system-firebird  Use Firebird libraries already on system, for
+                          building the Firebird-SDBC driver. If fb_config is
+                          not in PATH, use FBCONFIG to point to it.
+  --with-system-libtommath
+                          Use libtommath already on system
+  --with-system-hsqldb    Use hsqldb already on system.
+  --with-hsqldb-jar=JARFILE
+                          Specify path to jarfile manually.
+  --with-system-beanshell Use beanshell already on system.
+  --with-beanshell-jar=JARFILE
+                          Specify path to jarfile manually.
+  --with-system-rhino     Use rhino already on system.
+  --with-rhino-jar=JARFILE
+                          Specify path to jarfile manually.
+  --with-commons-logging-jar=JARFILE
+                          Specify path to jarfile manually.
+  --with-system-jfreereport
+                          Use JFreeReport already on system.
+  --with-sac-jar=JARFILE  Specify path to jarfile manually.
+  --with-libxml-jar=JARFILE
+                          Specify path to jarfile manually.
+  --with-flute-jar=JARFILE
+                          Specify path to jarfile manually.
+  --with-jfreereport-jar=JARFILE
+                          Specify path to jarfile manually.
+  --with-liblayout-jar=JARFILE
+                          Specify path to jarfile manually.
+  --with-libloader-jar=JARFILE
+                          Specify path to jarfile manually.
+  --with-libformula-jar=JARFILE
+                          Specify path to jarfile manually.
+  --with-librepository-jar=JARFILE
+                          Specify path to jarfile manually.
+  --with-libfonts-jar=JARFILE
+                          Specify path to jarfile manually.
+  --with-libserializer-jar=JARFILE
+                          Specify path to jarfile manually.
+  --with-libbase-jar=JARFILE
+                          Specify path to jarfile manually.
+  --with-system-odbc      Use the odbc headers already on system.
+  --with-system-sane      Use sane.h already on system.
+  --with-system-bluez     Use bluetooth.h already on system.
+  --with-system-curl      Use curl already on system.
+  --with-system-boost     Use boost already on system.
+  --with-system-glm       Use glm already on system.
+  --with-system-hunspell  Use libhunspell already on system.
+  --with-system-mythes    Use mythes already on system.
+  --with-system-altlinuxhyph
+                          Use ALTLinuxhyph already on system.
+  --with-system-lpsolve   Use lpsolve already on system.
+  --with-system-coinmp    Use CoinMP already on system.
+  --with-system-liblangtag
+                          Use liblangtag library already on system.
+  --with-webdav           Specify which library to use for webdav
+                          implementation. Possible values: "neon", "serf",
+                          "no". The default value is "neon". Example:
+                          --with-webdav="serf"
+  --with-linker-hash-style
+                          Use linker with --hash-style=<style> when linking
+                          shared objects. Possible values: "sysv", "gnu",
+                          "both". The default value is "gnu" if supported on
+                          the build system, and "sysv" otherwise.
+  --with-jdk-home=<absolute path to JDK home>
+                          If you have installed JDK 1.6 or later on your
+                          system please supply the path here. Note that this
+                          is not the location of the java command but the
+                          location of the entire distribution.
+  --with-help             Enable the build of help. There is a special
+                          parameter "common" that can be used to bundle only
+                          the common part, .e.g help-specific icons. This is
+                          useful when you build the helpcontent separately.
+
+                          Usage:     --with-help    build the old local help
+                                 --without-help     no local help (default)
+                                 --with-help=html   build the new HTML local help
+                                 --with-help=online build the new HTML online help
+
+  --with-java=<java command>
+                          Specify the name of the Java interpreter command.
+                          Typically "java" which is the default. To build
+                          without support for Java components, applets,
+                          accessibility or the XML filters written in Java,
+                          use --without-java or --with-java=no.
+  --with-jvm-path=<absolute path to parent of jvm home>
+                          Use a specific JVM search path at runtime. e.g. use
+                          --with-jvm-path=/usr/lib/ to find JRE/JDK in
+                          /usr/lib/jvm/
+  --with-ant-home=<absolute path to Ant home>
+                          If you have installed Jakarta Ant on your system,
+                          please supply the path here. Note that this is not
+                          the location of the Ant binary but the location of
+                          the entire distribution.
+  --with-symbol-config    Configuration for the crashreport symbol upload
+  --without-export-validation
+                          Disable validating OOXML and ODF files as exported
+                          from in-tree tests. Use this option e.g. if your
+                          system only provides Java 5.
+  --with-bffvalidator=<absolute path to BFFValidator>
+                          Enables export validation for Microsoft Binary
+                          formats (doc, xls, ppt). Requires installed
+                          Microsoft Office Binary File Format Validator. Note:
+                          export-validation (--with-export-validation) is
+                          required to be turned on. See
+                          https://www.microsoft.com/en-us/download/details.aspx?id=26794
+  --with-junit=<absolute path to JUnit 4 jar>
+                          Specifies the JUnit 4 jar file to use for
+                          JUnit-based tests. --without-junit disables those
+                          tests. Not relevant in the --without-java case.
+  --with-hamcrest=<absolute path to hamcrest jar>
+                          Specifies the hamcrest jar file to use for
+                          JUnit-based tests. --without-junit disables those
+                          tests. Not relevant in the --without-java case.
+  --with-perl-home=<abs. path to Perl 5 home>
+                          If you have installed Perl 5 Distribution, on your
+                          system, please supply the path here. Note that this
+                          is not the location of the Perl binary but the
+                          location of the entire distribution.
+  --with-doxygen=<absolute path to doxygen executable>
+                          Specifies the doxygen executable to use when
+                          generating ODK C/C++ documentation.
+                          --without-doxygen disables generation of ODK C/C++
+                          documentation. Not relevant in the --disable-odk
+                          case.
+  --with-visual-studio=<2017>
+                          Specify which Visual Studio version to use in case
+                          several are installed. Currently only 2017 is
+                          supported.
+  --with-windows-sdk=<7.1(A)/8.0(A)/8.1(A)/10>
+                          Specify which Windows SDK, or "Windows Kit", version
+                          to use in case the one that came with the selected
+                          Visual Studio is not what you want for some reason.
+                          Note that not all compiler/SDK combinations are
+                          supported. The intent is that this option should not
+                          be needed.
+  --with-lang="es sw tu cs sk"
+                          Use this option to build LibreOffice with additional
+                          UI language support. English (US) is always included
+                          by default. Separate multiple languages with space.
+                          For all languages, use --with-lang=ALL.
+  --with-locales="en es pt fr zh kr ja"
+                          Use this option to limit the locale information
+                          built in. Separate multiple locales with space. Very
+                          experimental and might well break stuff. Just a
+                          desperate measure to shrink code and data size. By
+                          default all the locales available is included. This
+                          option is completely unrelated to --with-lang.
+
+                          Affects also our character encoding conversion
+                          tables for encodings mainly targeted for a
+                          particular locale, like EUC-CN and EUC-TW for
+                          zh, ISO-2022-JP for ja.
+
+                          Affects also our add-on break iterator data for
+                          some languages.
+
+                          For the default, all locales, don't use this switch at all.
+                          Specifying just the language part of a locale means all matching
+                          locales will be included.
+
+  --with-krb5             Enable MIT Kerberos 5 support in modules that
+                          support it. By default automatically enabled on
+                          platforms where a good system Kerberos 5 is
+                          available.
+  --with-gssapi           Enable GSSAPI support in modules that support it. By
+                          default automatically enabled on platforms where a
+                          good system GSSAPI is available.
+  --with-iwyu             Use given IWYU binary path to check unneeded
+                          includes instead of building. Use only if you are
+                          hacking on it.
+  --without-lxml          gla11y will use python lxml when available,
+                          potentially building a local copy if necessary.
+                          --without-lxml tells it to not use python lxml at
+                          all, which means that gla11y will only report widget
+                          classes and ids.
+  --with-branding=/path/to/images
+                          Use given path to retrieve branding images set.
+
+                          Search for intro.png about.svg and flat_logo.svg.
+                          If any is missing, default ones will be used instead.
+
+                          Search also progress.conf for progress
+                          settings on intro screen :
+
+                          PROGRESSBARCOLOR="255,255,255" Set color of
+                          progress bar. Comma separated RGB decimal values.
+                          PROGRESSSIZE="407,6" Set size of progress bar.
+                          Comma separated decimal values (width, height).
+                          PROGRESSPOSITION="61,317" Set position of progress
+                          bar from left,top. Comma separated decimal values.
+                          PROGRESSFRAMECOLOR="20,136,3" Set color of progress
+                          bar frame. Comma separated RGB decimal values.
+                          PROGRESSTEXTCOLOR="0,0,0" Set color of progress
+                          bar text. Comma separated RGB decimal values.
+                          PROGRESSTEXTBASELINE="287" Set vertical position of
+                          progress bar text from top. Decimal value.
+
+                          Default values will be used if not found.
+
+  --with-extra-buildid="Tinderbox: Win-x86@6, Branch:master, Date:2012-11-26_00.29.34"
+                          Show addition build identification in about dialog.
+  --with-vendor="John the Builder"
+                          Set vendor of the build.
+  --with-android-package-name="org.libreoffice"
+                          Set Android package name of the build.
+  --with-compat-oowrappers
+                          Install oo* wrappers in parallel with lo* ones to
+                          keep backward compatibility. Has effect only with
+                          make distro-pack-install
+  --with-os-version=<OSVERSION>
+                          For FreeBSD users, use this option to override the
+                          detected OSVERSION.
+  --with-mingw-cross-compiler=<mingw32-g++ command>
+                          Specify the MinGW cross-compiler to use. When
+                          building on the ODK on Unix and building
+                          unowinreg.dll, specify the MinGW C++ cross-compiler.
+  --with-idlc-cpp=<cpp/ucpp>
+                          Specify the C Preprocessor to use for idlc. Default
+                          is ucpp.
+  --with-build-version="Built by Jim"
+                          Allows the builder to add a custom version tag that
+                          will appear in the Help/About box for QA purposes.
+  --with-parallelism      Number of jobs to run simultaneously during build.
+                          Parallel builds can save a lot of time on multi-cpu
+                          machines. Defaults to the number of CPUs on the
+                          machine, unless you configure --enable-icecream -
+                          then to 10.
+  --with-all-tarballs     Download all external tarballs unconditionally
+  --with-gdrive-client-id Provides the client id of the application for OAuth2
+                          authentication on Google Drive. If either this or
+                          --with-gdrive-client-secret is empty, the feature
+                          will be disabled
+  --with-gdrive-client-secret
+                          Provides the client secret of the application for
+                          OAuth2 authentication on Google Drive. If either
+                          this or --with-gdrive-client-id is empty, the
+                          feature will be disabled
+  --with-alfresco-cloud-client-id
+                          Provides the client id of the application for OAuth2
+                          authentication on Alfresco Cloud. If either this or
+                          --with-alfresco-cloud-client-secret is empty, the
+                          feature will be disabled
+  --with-alfresco-cloud-client-secret
+                          Provides the client secret of the application for
+                          OAuth2 authentication on Alfresco Cloud. If either
+                          this or --with-alfresco-cloud-client-id is empty,
+                          the feature will be disabled
+  --with-onedrive-client-id
+                          Provides the client id of the application for OAuth2
+                          authentication on OneDrive. If either this or
+                          --with-onedrive-client-secret is empty, the feature
+                          will be disabled
+  --with-onedrive-client-secret
+                          Provides the client secret of the application for
+                          OAuth2 authentication on OneDrive. If either this or
+                          --with-onedrive-client-id is empty, the feature will
+                          be disabled
+  --with-macosx-sdk=<version>
+                          Prefer a specific SDK for building.
+
+                          If the requested SDK is not available, a search for the oldest one will be done.
+                          With current Xcode versions, only the latest SDK is included, so this option is
+                          not terribly useful. It works fine to build with a new SDK and run the result
+                          on an older OS.
+
+                          e. g.: --with-macosx-sdk=10.9
+
+                          there are 3 options to control the MacOSX build:
+                          --with-macosx-sdk (referred as 'sdk' below)
+                          --with-macosx-version-min-required (referred as 'min' below)
+                          --with-macosx-version-max-allowed (referred as 'max' below)
+
+                          the connection between these value and the default they take is as follow:
+                          ( ? means not specified on the command line, s means the SDK version found,
+                          constraint: 8 <= x <= y <= z)
+
+                          ==========================================
+                           command line      || config result
+                          ==========================================
+                          min  | max  | sdk  || min  | max  | sdk  |
+                          ?    | ?    | ?    || 10.9 | 10.s | 10.s |
+                          ?    | ?    | 10.x || 10.9 | 10.x | 10.x |
+                          ?    | 10.x | ?    || 10.9 | 10.s | 10.s |
+                          ?    | 10.x | 10.y || 10.9 | 10.x | 10.y |
+                          10.x | ?    | ?    || 10.x | 10.s | 10.s |
+                          10.x | ?    | 10.y || 10.x | 10.y | 10.y |
+                          10.x | 10.y | ?    || 10.x | 10.y | 10.y |
+                          10.x | 10.y | 10.z || 10.x | 10.y | 10.z |
+
+
+                          see: http://developer.apple.com/library/mac/#technotes/tn2064/_index.html
+                          for a detailed technical explanation of these variables
+
+                          Note: MACOSX_DEPLOYMENT_TARGET will be set to the value of 'min'.
+
+  --with-macosx-version-min-required=<version>
+                          set the minimum OS version needed to run the built
+                          LibreOffice
+
+                          e. g.: --with-macos-version-min-required=10.9
+                          see --with-macosx-sdk for more info
+
+  --with-macosx-version-max-allowed=<version>
+                          set the maximum allowed OS version the LibreOffice
+                          compilation can use APIs from
+
+                          e. g.: --with-macos-version-max-allowed=10.9
+                          see --with-macosx-sdk for more info
+
+  --with-system-icu-for-build=yes/no/force
+                          Use icu already on system for build tools
+                          (cross-compilation only).
+  --with-system-libcmis   Use libcmis from operating system instead of
+                          building and bundling it.
+  --with-ucrt-dir         path to the directory with the arch-specific MSU
+                          packages of the Windows Universal CRT
+                          redistributables (MS KB 2999226) for packaging into
+                          the installsets (without those the target system
+                          needs to install the UCRT or Visual C++ Runtimes
+                          manually). The directory must contain the following
+                          6 files: Windows6.1-KB2999226-x64.msu
+                          Windows6.1-KB2999226-x86.msu
+                          Windows8.1-KB2999226-x64.msu
+                          Windows8.1-KB2999226-x86.msu
+                          Windows8-RT-KB2999226-x64.msu
+                          Windows8-RT-KB2999226-x86.msu A zip archive
+                          including those files is available from Microsoft
+                          site:
+                          https://www.microsoft.com/en-us/download/details.aspx?id=48234
+  --with-system-expat     Use expat from operating system instead of building
+                          and bundling it.
+  --with-system-xmlsec    Use xmlsec from operating system instead of building
+                          and bundling it.
+  --with-system-libeot    Use libeot from operating system instead of building
+                          and bundling it.
+  --with-system-librevenge
+                          Use librevenge from operating system instead of
+                          building and bundling it.
+  --with-system-libodfgen Use libodfgen from operating system instead of
+                          building and bundling it.
+  --with-system-libepubgen
+                          Use libepubgen from operating system instead of
+                          building and bundling it.
+  --with-system-libwpd    Use libwpd from operating system instead of building
+                          and bundling it.
+  --with-system-libwpg    Use libwpg from operating system instead of building
+                          and bundling it.
+  --with-system-libwps    Use libwps from operating system instead of building
+                          and bundling it.
+  --with-system-libvisio  Use libvisio from operating system instead of
+                          building and bundling it.
+  --with-system-libcdr    Use libcdr from operating system instead of building
+                          and bundling it.
+  --with-system-libmspub  Use libmspub from operating system instead of
+                          building and bundling it.
+  --with-system-libmwaw   Use libmwaw from operating system instead of
+                          building and bundling it.
+  --with-system-libetonyek
+                          Use libetonyek from operating system instead of
+                          building and bundling it.
+  --with-system-libfreehand
+                          Use libfreehand from operating system instead of
+                          building and bundling it.
+  --with-system-libebook  Use libebook from operating system instead of
+                          building and bundling it.
+  --with-system-libabw    Use libabw from operating system instead of building
+                          and bundling it.
+  --with-system-libpagemaker
+                          Use libpagemaker from operating system instead of
+                          building and bundling it.
+  --with-system-libqxp    Use libqxp from operating system instead of building
+                          and bundling it.
+  --with-system-libzmf    Use libzmf from operating system instead of building
+                          and bundling it.
+  --with-system-libstaroffice
+                          Use libstaroffice from operating system instead of
+                          building and bundling it.
+  --with-system-lcms2     Use lcms2 from operating system instead of building
+                          and bundling it.
+  --with-system-cppunit   Use cppunit from operating system instead of
+                          building and bundling it.
+  --with-system-libatomic_ops
+                          Use libatomic_ops from operating system instead of
+                          building and bundling it.
+  --with-boost[=ARG]      use Boost library from a standard location
+                          (ARG=yes), from the specified location (ARG=<path>),
+                          or disable it (ARG=no) [ARG=yes]
+  --with-boost-libdir=LIB_DIR
+                          Force given directory for boost libraries. Note that
+                          this will override library path detection, so use
+                          this parameter only if default library detection
+                          fails and you know exactly where your boost
+                          libraries are located.
+  --with-boost-date-time[=special-lib]
+                          use the Date_Time library from boost - it is
+                          possible to specify a certain library for the linker
+                          e.g.
+                          --with-boost-date-time=boost_date_time-gcc-mt-d-1_33_1
+  --with-boost-filesystem[=special-lib]
+                          use the Filesystem library from boost - it is
+                          possible to specify a certain library for the linker
+                          e.g. --with-boost-filesystem=boost_filesystem-gcc-mt
+  --with-boost-iostreams[=special-lib]
+                          use the IOStreams library from boost - it is
+                          possible to specify a certain library for the linker
+                          e.g.
+                          --with-boost-iostreams=boost_iostreams-gcc-mt-d-1_33_1
+  --with-boost-locale[=special-lib]
+                          use the Locale library from boost - it is possible
+                          to specify a certain library for the linker e.g.
+                          --with-boost-locale=boost_locale-gcc-mt
+  --with-system-mdds      Use mdds from operating system instead of building
+                          and bundling it.
+  --with-system-nss       Use nss from operating system instead of building
+                          and bundling it.
+  --with-system-orcus     Use orcus from operating system instead of building
+                          and bundling it.
+  --with-boost-system[=special-lib]
+                          use the System library from boost - it is possible
+                          to specify a certain library for the linker e.g.
+                          --with-boost-system=boost_system-gcc-mt
+  --with-system-graphite  Use graphite from operating system instead of
+                          building and bundling it.
+  --with-system-harfbuzz  Use harfbuzz from operating system instead of
+                          building and bundling it.
+  --with-x                use the X Window System
+  --with-system-apr       Use apr from operating system instead of building
+                          and bundling it.
+  --with-system-serf      Use serf from operating system instead of building
+                          and bundling it.
+  --with-system-neon      Use neon from operating system instead of building
+                          and bundling it.
+  --with-system-openssl   Use openssl from operating system instead of
+                          building and bundling it.
+  --with-libgcrypt-prefix=PFX
+                          prefix where LIBGCRYPT is installed (optional)
+  --with-system-redland   Use redland from operating system instead of
+                          building and bundling it.
+  --with-system-libexttextcat
+                          Use libexttextcat from operating system instead of
+                          building and bundling it.
+  --with-system-libnumbertext
+                          Use libnumbertext from operating system instead of
+                          building and bundling it.
+  --with-system-epoxy     Use epoxy from operating system instead of building
+                          and bundling it.
+  --with-system-libpng    Use libpng from operating system instead of building
+                          and bundling it.
+
+Some influential environment variables:
+  CC          C compiler command
+  CFLAGS      C compiler flags
+  LDFLAGS     linker flags, e.g. -L<lib dir> if you have libraries in a
+              nonstandard directory <lib dir>
+  LIBS        libraries to pass to the linker, e.g. -l<library>
+  CPPFLAGS    (Objective) C/C++ preprocessor flags, e.g. -I<include dir> if
+              you have headers in a nonstandard directory <include dir>
+  CPP         C preprocessor
+  PKG_CONFIG  path to pkg-config utility
+  PKG_CONFIG_PATH
+              directories to add to pkg-config's search path
+  PKG_CONFIG_LIBDIR
+              path overriding pkg-config's built-in search path
+  FONTCONFIG_CFLAGS
+              C compiler flags for FONTCONFIG, overriding pkg-config
+  FONTCONFIG_LIBS
+              linker flags for FONTCONFIG, overriding pkg-config
+  CXX         C++ compiler command
+  CXXFLAGS    C++ compiler flags
+  CXXCPP      C++ preprocessor
+  LIBCMIS_CFLAGS
+              C compiler flags for LIBCMIS, overriding pkg-config
+  LIBCMIS_LIBS
+              linker flags for LIBCMIS, overriding pkg-config
+  CLUCENE_CFLAGS
+              C compiler flags for CLUCENE, overriding pkg-config
+  CLUCENE_LIBS
+              linker flags for CLUCENE, overriding pkg-config
+  EXPAT_CFLAGS
+              C compiler flags for EXPAT, overriding pkg-config
+  EXPAT_LIBS  linker flags for EXPAT, overriding pkg-config
+  XMLSEC_CFLAGS
+              C compiler flags for XMLSEC, overriding pkg-config
+  XMLSEC_LIBS linker flags for XMLSEC, overriding pkg-config
+  LIBEOT_CFLAGS
+              C compiler flags for LIBEOT, overriding pkg-config
+  LIBEOT_LIBS linker flags for LIBEOT, overriding pkg-config
+  REVENGE_CFLAGS
+              C compiler flags for REVENGE, overriding pkg-config
+  REVENGE_LIBS
+              linker flags for REVENGE, overriding pkg-config
+  ODFGEN_CFLAGS
+              C compiler flags for ODFGEN, overriding pkg-config
+  ODFGEN_LIBS linker flags for ODFGEN, overriding pkg-config
+  EPUBGEN_CFLAGS
+              C compiler flags for EPUBGEN, overriding pkg-config
+  EPUBGEN_LIBS
+              linker flags for EPUBGEN, overriding pkg-config
+  WPD_CFLAGS  C compiler flags for WPD, overriding pkg-config
+  WPD_LIBS    linker flags for WPD, overriding pkg-config
+  WPG_CFLAGS  C compiler flags for WPG, overriding pkg-config
+  WPG_LIBS    linker flags for WPG, overriding pkg-config
+  WPS_CFLAGS  C compiler flags for WPS, overriding pkg-config
+  WPS_LIBS    linker flags for WPS, overriding pkg-config
+  VISIO_CFLAGS
+              C compiler flags for VISIO, overriding pkg-config
+  VISIO_LIBS  linker flags for VISIO, overriding pkg-config
+  CDR_CFLAGS  C compiler flags for CDR, overriding pkg-config
+  CDR_LIBS    linker flags for CDR, overriding pkg-config
+  MSPUB_CFLAGS
+              C compiler flags for MSPUB, overriding pkg-config
+  MSPUB_LIBS  linker flags for MSPUB, overriding pkg-config
+  MWAW_CFLAGS C compiler flags for MWAW, overriding pkg-config
+  MWAW_LIBS   linker flags for MWAW, overriding pkg-config
+  ETONYEK_CFLAGS
+              C compiler flags for ETONYEK, overriding pkg-config
+  ETONYEK_LIBS
+              linker flags for ETONYEK, overriding pkg-config
+  FREEHAND_CFLAGS
+              C compiler flags for FREEHAND, overriding pkg-config
+  FREEHAND_LIBS
+              linker flags for FREEHAND, overriding pkg-config
+  EBOOK_CFLAGS
+              C compiler flags for EBOOK, overriding pkg-config
+  EBOOK_LIBS  linker flags for EBOOK, overriding pkg-config
+  ABW_CFLAGS  C compiler flags for ABW, overriding pkg-config
+  ABW_LIBS    linker flags for ABW, overriding pkg-config
+  PAGEMAKER_CFLAGS
+              C compiler flags for PAGEMAKER, overriding pkg-config
+  PAGEMAKER_LIBS
+              linker flags for PAGEMAKER, overriding pkg-config
+  QXP_CFLAGS  C compiler flags for QXP, overriding pkg-config
+  QXP_LIBS    linker flags for QXP, overriding pkg-config
+  ZMF_CFLAGS  C compiler flags for ZMF, overriding pkg-config
+  ZMF_LIBS    linker flags for ZMF, overriding pkg-config
+  STAROFFICE_CFLAGS
+              C compiler flags for STAROFFICE, overriding pkg-config
+  STAROFFICE_LIBS
+              linker flags for STAROFFICE, overriding pkg-config
+  LCMS2_CFLAGS
+              C compiler flags for LCMS2, overriding pkg-config
+  LCMS2_LIBS  linker flags for LCMS2, overriding pkg-config
+  CPPUNIT_CFLAGS
+              C compiler flags for CPPUNIT, overriding pkg-config
+  CPPUNIT_LIBS
+              linker flags for CPPUNIT, overriding pkg-config
+  FREETYPE_CFLAGS
+              C compiler flags for FREETYPE, overriding pkg-config
+  FREETYPE_LIBS
+              linker flags for FREETYPE, overriding pkg-config
+  LIBXSLT_CFLAGS
+              C compiler flags for LIBXSLT, overriding pkg-config
+  LIBXSLT_LIBS
+              linker flags for LIBXSLT, overriding pkg-config
+  LIBEXSLT_CFLAGS
+              C compiler flags for LIBEXSLT, overriding pkg-config
+  LIBEXSLT_LIBS
+              linker flags for LIBEXSLT, overriding pkg-config
+  LIBXML_CFLAGS
+              C compiler flags for LIBXML, overriding pkg-config
+  LIBXML_LIBS linker flags for LIBXML, overriding pkg-config
+  PYTHON      the Python interpreter
+  FIREBIRD_CFLAGS
+              C compiler flags for FIREBIRD, overriding pkg-config
+  FIREBIRD_LIBS
+              linker flags for FIREBIRD, overriding pkg-config
+  ATOMIC_OPS_CFLAGS
+              C compiler flags for ATOMIC_OPS, overriding pkg-config
+  ATOMIC_OPS_LIBS
+              linker flags for ATOMIC_OPS, overriding pkg-config
+  CURL_CFLAGS C compiler flags for CURL, overriding pkg-config
+  CURL_LIBS   linker flags for CURL, overriding pkg-config
+  MDDS_CFLAGS C compiler flags for MDDS, overriding pkg-config
+  MDDS_LIBS   linker flags for MDDS, overriding pkg-config
+  NSS_CFLAGS  C compiler flags for NSS, overriding pkg-config
+  NSS_LIBS    linker flags for NSS, overriding pkg-config
+  ICU_CFLAGS  C compiler flags for ICU, overriding pkg-config
+  ICU_LIBS    linker flags for ICU, overriding pkg-config
+  ORCUS_CFLAGS
+              C compiler flags for ORCUS, overriding pkg-config
+  ORCUS_LIBS  linker flags for ORCUS, overriding pkg-config
+  GRAPHITE_CFLAGS
+              C compiler flags for GRAPHITE, overriding pkg-config
+  GRAPHITE_LIBS
+              linker flags for GRAPHITE, overriding pkg-config
+  HARFBUZZ_CFLAGS
+              C compiler flags for HARFBUZZ, overriding pkg-config
+  HARFBUZZ_LIBS
+              linker flags for HARFBUZZ, overriding pkg-config
+  XMKMF       Path to xmkmf, Makefile generator for X Window System
+  XRENDER_CFLAGS
+              C compiler flags for XRENDER, overriding pkg-config
+  XRENDER_LIBS
+              linker flags for XRENDER, overriding pkg-config
+  XRANDR_CFLAGS
+              C compiler flags for XRANDR, overriding pkg-config
+  XRANDR_LIBS linker flags for XRANDR, overriding pkg-config
+  APR_CFLAGS  C compiler flags for APR, overriding pkg-config
+  APR_LIBS    linker flags for APR, overriding pkg-config
+  SERF_CFLAGS C compiler flags for SERF, overriding pkg-config
+  SERF_LIBS   linker flags for SERF, overriding pkg-config
+  NEON_CFLAGS C compiler flags for NEON, overriding pkg-config
+  NEON_LIBS   linker flags for NEON, overriding pkg-config
+  OPENSSL_CFLAGS
+              C compiler flags for OPENSSL, overriding pkg-config
+  OPENSSL_LIBS
+              linker flags for OPENSSL, overriding pkg-config
+  GNUTLS_CFLAGS
+              C compiler flags for GNUTLS, overriding pkg-config
+  GNUTLS_LIBS linker flags for GNUTLS, overriding pkg-config
+  REDLAND_CFLAGS
+              C compiler flags for REDLAND, overriding pkg-config
+  REDLAND_LIBS
+              linker flags for REDLAND, overriding pkg-config
+  HUNSPELL_CFLAGS
+              C compiler flags for HUNSPELL, overriding pkg-config
+  HUNSPELL_LIBS
+              linker flags for HUNSPELL, overriding pkg-config
+  MYTHES_CFLAGS
+              C compiler flags for MYTHES, overriding pkg-config
+  MYTHES_LIBS linker flags for MYTHES, overriding pkg-config
+  COINMP_CFLAGS
+              C compiler flags for COINMP, overriding pkg-config
+  COINMP_LIBS linker flags for COINMP, overriding pkg-config
+  LIBEXTTEXTCAT_CFLAGS
+              C compiler flags for LIBEXTTEXTCAT, overriding pkg-config
+  LIBEXTTEXTCAT_LIBS
+              linker flags for LIBEXTTEXTCAT, overriding pkg-config
+  LIBNUMBERTEXT_CFLAGS
+              C compiler flags for LIBNUMBERTEXT, overriding pkg-config
+  LIBNUMBERTEXT_LIBS
+              linker flags for LIBNUMBERTEXT, overriding pkg-config
+  EPOXY_CFLAGS
+              C compiler flags for EPOXY, overriding pkg-config
+  EPOXY_LIBS  linker flags for EPOXY, overriding pkg-config
+  GTK3_CFLAGS C compiler flags for GTK3, overriding pkg-config
+  GTK3_LIBS   linker flags for GTK3, overriding pkg-config
+  DBUS_CFLAGS C compiler flags for DBUS, overriding pkg-config
+  DBUS_LIBS   linker flags for DBUS, overriding pkg-config
+  DBUS_GLIB_CFLAGS
+              C compiler flags for DBUS_GLIB, overriding pkg-config
+  DBUS_GLIB_LIBS
+              linker flags for DBUS_GLIB, overriding pkg-config
+  GTK_CFLAGS  C compiler flags for GTK, overriding pkg-config
+  GTK_LIBS    linker flags for GTK, overriding pkg-config
+  GTHREAD_CFLAGS
+              C compiler flags for GTHREAD, overriding pkg-config
+  GTHREAD_LIBS
+              linker flags for GTHREAD, overriding pkg-config
+  GTK_PRINT_CFLAGS
+              C compiler flags for GTK_PRINT, overriding pkg-config
+  GTK_PRINT_LIBS
+              linker flags for GTK_PRINT, overriding pkg-config
+  GIO_CFLAGS  C compiler flags for GIO, overriding pkg-config
+  GIO_LIBS    linker flags for GIO, overriding pkg-config
+  GSTREAMER_1_0_CFLAGS
+              C compiler flags for GSTREAMER_1_0, overriding pkg-config
+  GSTREAMER_1_0_LIBS
+              linker flags for GSTREAMER_1_0, overriding pkg-config
+  GSTREAMER_0_10_CFLAGS
+              C compiler flags for GSTREAMER_0_10, overriding pkg-config
+  GSTREAMER_0_10_LIBS
+              linker flags for GSTREAMER_0_10, overriding pkg-config
+  DCONF_CFLAGS
+              C compiler flags for DCONF, overriding pkg-config
+  DCONF_LIBS  linker flags for DCONF, overriding pkg-config
+  POPPLER_CFLAGS
+              C compiler flags for POPPLER, overriding pkg-config
+  POPPLER_LIBS
+              linker flags for POPPLER, overriding pkg-config
+  QT4_CFLAGS  C compiler flags for QT4, overriding pkg-config
+  QT4_LIBS    linker flags for QT4, overriding pkg-config
+  KDE4_GLIB_CFLAGS
+              C compiler flags for KDE4_GLIB, overriding pkg-config
+  KDE4_GLIB_LIBS
+              linker flags for KDE4_GLIB, overriding pkg-config
+  QT5_GLIB_CFLAGS
+              C compiler flags for QT5_GLIB, overriding pkg-config
+  QT5_GLIB_LIBS
+              linker flags for QT5_GLIB, overriding pkg-config
+  KF5_XCB_CFLAGS
+              C compiler flags for KF5_XCB, overriding pkg-config
+  KF5_XCB_LIBS
+              linker flags for KF5_XCB, overriding pkg-config
+  GOBJECT_CFLAGS
+              C compiler flags for GOBJECT, overriding pkg-config
+  GOBJECT_LIBS
+              linker flags for GOBJECT, overriding pkg-config
+  BZIP2_CFLAGS
+              C compiler flags for BZIP2, overriding pkg-config
+  BZIP2_LIBS  linker flags for BZIP2, overriding pkg-config
+  CAIRO_CFLAGS
+              C compiler flags for CAIRO, overriding pkg-config
+  CAIRO_LIBS  linker flags for CAIRO, overriding pkg-config
+  AVAHI_CFLAGS
+              C compiler flags for AVAHI, overriding pkg-config
+  AVAHI_LIBS  linker flags for AVAHI, overriding pkg-config
+  LIBLANGTAG_CFLAGS
+              C compiler flags for LIBLANGTAG, overriding pkg-config
+  LIBLANGTAG_LIBS
+              linker flags for LIBLANGTAG, overriding pkg-config
+  LIBPNG_CFLAGS
+              C compiler flags for LIBPNG, overriding pkg-config
+  LIBPNG_LIBS linker flags for LIBPNG, overriding pkg-config
+
+Use these variables to override the choices made by `configure' or to help
+it to find libraries and programs with nonstandard names/locations.
+
+Report bugs to the package provider.
+LibreOffice home page: <http://documentfoundation.org/>.
