@@ -43,6 +43,14 @@ sudo yum install -y \
 
 sudo yum groupinstall -y "Development Tools"
 
+# install liblangtag (not available in Amazon Linux or EPEL repos)
+sudo nano /etc/yum.repos.d/centos.repo
+# paste repo info from https://unix.stackexchange.com/questions/433046/how-do-i-enable-centos-repositories-on-rhel-red-hat
+yum repolist
+sudo yum install -y liblangtag
+sudo cp -r /usr/share/liblangtag /usr/local/share/liblangtag/
+
+
 # clone libreoffice sources
 curl -L https://github.com/LibreOffice/core/archive/libreoffice-6.2.1.2.tar.gz | tar -xz
 mv core-libreoffice-6.2.1.2 libreoffice
