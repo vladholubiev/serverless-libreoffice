@@ -138,7 +138,10 @@ rm -rf ./instdir/share/gallery \
     ./instdir/NOTICE
 
 # archive
-tar -zcvf lo.tar.gz instdir
+tar -cvf lo.tar instdir
+
+# install brotli first https://www.howtoforge.com/how-to-compile-brotli-from-source-on-centos-7/
+brotli --best --force ./lo.tar
 
 # test if compilation was successful
 echo "hello world" > a.txt
@@ -146,4 +149,4 @@ echo "hello world" > a.txt
     --nolockcheck --nologo --norestore --convert-to pdf --outdir $(pwd) a.txt
 
 # download from EC2 to local machine
-scp ec2-user@ec2-54-227-212-139.compute-1.amazonaws.com:/home/ec2-user/libreoffice/lo.tar.gz $(pwd)
+scp ec2-user@ec2-54-227-212-139.compute-1.amazonaws.com:/home/ec2-user/libreoffice/lo.tar.br $(pwd)
