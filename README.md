@@ -12,7 +12,6 @@
 
 This repo contains code used to run the [online demo](https://vladholubiev.com/serverless-libreoffice).
 
-
 ```
 ├── compile.sh  <-- commands used to compile LibreOffice for Lambda
 ├── infra       <-- terraform config to deploy example Lambda
@@ -35,23 +34,23 @@ Compiled and ready to use archive can be downloaded under [Releases section](htt
 
 # How to compile by yourself
 
-> Check out a comprehensive [step-by-step tutorial](STEP_BY_STEP.md) from 0 to deployed function. 
+> Check out a comprehensive [step-by-step tutorial](STEP_BY_STEP.md) from 0 to deployed function.
 
 1. Go to [Lambda Execution Environment and Available Libraries](https://docs.aws.amazon.com/lambda/latest/dg/current-supported-versions.html) page to get the latest AMI id
-2.  Click on [this link](https://console.aws.amazon.com/ec2/v2/home#Images:visibility=public-images;search=amzn-ami-hvm-2017.03.1.20170812-x86_64-gp2) to get AMI id for your region
+2. Click on [this link](https://console.aws.amazon.com/ec2/v2/home#Images:visibility=public-images;search=amzn-ami-hvm-2017.03.1.20170812-x86_64-gp2) to get AMI id for your region
 3. Spin up a `c5.2xlarge` spot instance with ~ 100 GB of storage attached
 4. Follow the steps in `compile.sh` file in the repo
 
 # Help
 
-* [List of RPM Packages available in AWS Lambda](https://gist.github.com/vladgolubev/1dac4ed47a5febf110c668074c6b671c)
-* [List of Libraries available in AWS Lambda](https://gist.github.com/vladgolubev/439559fc7597a4fb51eaa9e97b72f319)
+- [List of RPM Packages available in AWS Lambda](https://gist.github.com/vladgolubev/1dac4ed47a5febf110c668074c6b671c)
+- [List of Libraries available in AWS Lambda](https://gist.github.com/vladgolubev/439559fc7597a4fb51eaa9e97b72f319)
 
 # Related Projects
 
-* [Docker in AWS Lambda](https://github.com/vladgolubev/docker-in-aws-lambda)
-* [NPM package with bundled LibreOffice for Lambda (85 MB)](https://github.com/shelfio/aws-lambda-libreoffice)
-* [Lambda Layer with LibreOffice](https://github.com/shelfio/libreoffice-lambda-layer)
+- [Docker in AWS Lambda](https://github.com/vladgolubev/docker-in-aws-lambda)
+- [NPM package with bundled LibreOffice for Lambda (85 MB)](https://github.com/shelfio/aws-lambda-libreoffice)
+- [Lambda Layer with LibreOffice](https://github.com/shelfio/libreoffice-lambda-layer)
 
 # How To Help
 
@@ -79,6 +78,34 @@ And stripped symbols from shared objects.
 Here is the list of: [available RPM packages](https://gist.github.com/vladgolubev/1dac4ed47a5febf110c668074c6b671c)
 and [libraries](https://gist.github.com/vladgolubev/439559fc7597a4fb51eaa9e97b72f319)
 available in AWS Lambda Environment, which can be helpful.
+
+You can also use multi compression level, with upx and then decompress after brotli.
+
+## Testing
+
+Update repo for testing. Return before S3 for example, hardcode or generate files to convert and setup variables. Then simply run:
+
+```
+docker run \
+ -v "\$PWD":/var/task \
+ lambci/lambda:nodejs12.x src/handler.handler
+```
+
+After successful execution, get the resulted files to check the pdfs.
+
+```
+docker ps -a
+```
+
+Find exect container id.
+
+Then execute
+
+```
+docker cp containerId:/tmp/filename.pdf ./filename.pdf
+```
+
+Then check your results locally
 
 ## License
 

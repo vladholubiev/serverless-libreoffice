@@ -1,23 +1,18 @@
-const {unpackArchive} = require('./libreoffice');
-const {convertFileToPDF} = require('./logic');
+const { unpack } = require("./libreoffice");
+const { convertFileToPDF } = require("./logic");
 
-unpackArchive();
-
-module.exports.handler = (event, context, cb) => {
+module.exports.handler = async (event, context, cb) => {
+  await unpack();
   if (event.warmup) {
     return cb();
   }
 
-  const {filename, base64File} = JSON.parse(event.body);
-
-  return convertFileToPDF(base64File, filename)
-    .then(pdfFileURL => {
-      return cb(null, {
-        headers: {
-          'Access-Control-Allow-Origin': 'https://vladholubiev.com'
-        },
-        body: JSON.stringify({pdfFileURL})
-      });
-    })
-    .catch(cb);
+  const { filename, base64File } = JSON.parse(event.body);
+  const pdfFileURL = await convertFileToPDF(base64File, filename).catch(cb);
+  return cb(null, {
+    headers: {
+      "Access-Control-Allow-Origin": "https://vladholubiev.com"
+    },
+    body: JSON.stringify({ pdfFileURL })
+  });
 };
