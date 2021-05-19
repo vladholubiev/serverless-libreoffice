@@ -4,3 +4,4 @@
 *.tfstate.backup
 *.backup
 lo.tar.gz
+layers.zip

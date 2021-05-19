@@ -36,10 +36,10 @@ Compiled and ready to use archive can be downloaded under [Releases section](htt
 
 > Check out a comprehensive [step-by-step tutorial](STEP_BY_STEP.md) from 0 to deployed function.
 
-1. Go to [Lambda Execution Environment and Available Libraries](https://docs.aws.amazon.com/lambda/latest/dg/current-supported-versions.html) page to get the latest AMI id
-2. Click on [this link](https://console.aws.amazon.com/ec2/v2/home#Images:visibility=public-images;search=amzn-ami-hvm-2017.03.1.20170812-x86_64-gp2) to get AMI id for your region
-3. Spin up a `c5.2xlarge` spot instance with ~ 100 GB of storage attached
-4. Follow the steps in `compile.sh` file in the repo
+To run this, you will need to [Docker](https://docs.docker.com/install/) and [docker-compose](https://docs.docker.com/compose/install/) installed.
+
+1. Install and configure Docker and docker-compose locally or on a `c5.2xlarge` spot instance with ~ 8 GB (the default) of storage attached.
+1. In a terminal, run `docker-compose run --rm libreoffice`. It will compile LibreOffice and then copy layers.zip to your local drive.
 
 # Help
 
