@@ -4,7 +4,7 @@ FROM public.ecr.aws/lambda/nodejs:14.2022.02.01.09-x86_64 as lobuild
 ENV LC_CTYPE=en_US.UTF-8
 ENV LC_ALL=en_US.UTF-8
 
-ENV LIBREOFFICE_VERSION=7.3.1.1
+ENV LIBREOFFICE_VERSION=7.3.2.2
 
 RUN yum groupinstall -y "Development Tools"
 
