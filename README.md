@@ -1,5 +1,8 @@
 # Serverless LibreOffice
 
+# UPD 2022-06
+> See [libreoffice-lambda-base-image](https://github.com/shelfio/libreoffice-lambda-base-image) & [aws-lambda-libreoffice](https://github.com/shelfio/aws-lambda-libreoffice) for the latest updates
+
 [![](https://cdn-images-1.medium.com/max/1600/1*4q_I8VM6Gtmtw6TAjORylA.png)](https://vladholubiev.com/serverless-libreoffice)
 
 <p align="center">
