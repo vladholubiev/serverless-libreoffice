@@ -1,52 +1,41 @@
-FROM amazonlinux:2.0.20190508 as lobuild
+FROM public.ecr.aws/lambda/nodejs:14.2022.02.01.09-x86_64 as lobuild
 
 # see https://stackoverflow.com/questions/2499794/how-to-fix-a-locale-setting-warning-from-perl
 ENV LC_CTYPE=en_US.UTF-8
 ENV LC_ALL=en_US.UTF-8
 
-ENV LIBREOFFICE_VERSION=6.2.1.2
+ENV LIBREOFFICE_VERSION=7.3.1.1
+
+RUN yum groupinstall -y "Development Tools"
 
 # install basic stuff required for compilation
 RUN yum install -y yum-utils \
     && yum-config-manager --enable epel \
     && yum install -y \
-    google-crosextra-caladea-fonts \
-    autoconf \
-    ccache \
-    expat-devel \
-    expat-devel.x86_64 \
-    fontconfig-devel \
-    git \
-    gmp-devel \
-    google-crosextra-caladea-fonts \
-    google-crosextra-carlito-fonts \
-    gperf \
-    icu \
-    libcurl-devel \
-    liberation-sans-fonts \
-    liberation-serif-fonts \
-    libffi-devel \
-    libICE-devel \
-    libicu-devel \
-    libmpc-devel \
-    libpng-devel \
-    libSM-devel \
-    libX11-devel \
-    libXext-devel \
-    libXrender-devel \
-    libxslt-devel \
-    mesa-libGL-devel \
-    mesa-libGLU-devel \
-    mpfr-devel \
-    nasm \
-    nspr-devel \
-    nss-devel \
-    openssl-devel \
-    perl-Digest-MD5 \
-    python34-devel \
-    which # Used by autogen.sh
+        gzip \
+        which \
+        fontconfig-devel \
+        perl-Digest-MD5 \
+        libxslt-devel \
+        python3-devel \
+        mesa-libGL-devel \
+        nasm
 
-RUN yum groupinstall -y "Development Tools"
+# install required gperf 3.1
+RUN cd /tmp \
+    && curl -L http://ftp.gnu.org/pub/gnu/gperf/gperf-3.1.tar.gz | tar -xz \
+    && cd gperf-3.1 \
+    && ./configure --prefix=/usr --docdir=/usr/share/doc/gperf-3.1 && make && make -j1 check && make install && gperf --version
+
+# install required flex 2.6.4
+RUN cd /tmp \
+    && curl -L https://github.com/westes/flex/files/981163/flex-2.6.4.tar.gz | tar -xz \
+    && cd flex-2.6.4 \
+    && ./autogen.sh && ./configure && make && make install && flex --version
+
+# create and use a build user as libre office does not like to be built as "root"
+RUN /usr/sbin/useradd -U -m -s /bin/bash lo_build && echo 'lo_build ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
+USER lo_build
 
 # fetch the LibreOffice source
 RUN cd /tmp \
@@ -54,14 +43,8 @@ RUN cd /tmp \
     && mv core-libreoffice-${LIBREOFFICE_VERSION} libreoffice
 
 WORKDIR /tmp/libreoffice
-
 # see https://ask.libreoffice.org/en/question/72766/sourcesver-missing-while-compiling-from-source/
 RUN echo "lo_sources_ver=${LIBREOFFICE_VERSION}" >> sources.ver
-
-# install liblangtag (not available in Amazon Linux or EPEL repos)
-# paste repo info from https://unix.stackexchange.com/questions/433046/how-do-i-enable-centos-repositories-on-rhel-red-hat
-COPY config/centos.repo /etc/yum.repos.d/
-RUN yum repolist && yum install -y liblangtag && cp -r /usr/share/liblangtag /usr/local/share/liblangtag/
 
 RUN ./autogen.sh \
     --disable-avahi \
@@ -76,35 +59,29 @@ RUN ./autogen.sh \
     --disable-dbgutil \
     --disable-extension-integration \
     --disable-extension-update \
-    --disable-firebird-sdbc \
     --disable-gio \
-    --disable-gstreamer-0-10 \
     --disable-gstreamer-1-0 \
-    --disable-gtk \
     --disable-gtk3 \
     --disable-introspection \
-    --disable-kde4 \
     --disable-largefile \
-    --disable-lotuswordpro \
     --disable-lpsolve \
     --disable-odk \
     --disable-ooenv \
     --disable-pch \
     --disable-postgresql-sdbc \
+    --disable-mariadb-sdbc \
+    --disable-lotuswordpro \
+    --disable-firebird-sdbc \
     --disable-python \
     --disable-randr \
     --disable-report-builder \
     --disable-scripting-beanshell \
     --disable-scripting-javascript \
     --disable-sdremote \
+    --disable-skia \
     --disable-sdremote-bluetooth \
     --enable-mergelibs \
     --with-galleries="no" \
-    --with-system-curl \
-    --with-system-expat \
-    --with-system-libxml \
-    --with-system-nss \
-    --with-system-openssl \
     --with-theme="no" \
     --without-export-validation \
     --without-fonts \
@@ -113,7 +90,12 @@ RUN ./autogen.sh \
     --without-junit \
     --without-krb5 \
     --without-myspell-dicts \
-    --without-system-dicts
+    --without-system-dicts \
+    --disable-gui \
+    --disable-librelogo \
+    --disable-ldap \
+    --with-webdav=no \
+    --disable-cmis
 
 # Disable flaky unit test failing on macos (and for some reason on Amazon Linux as well)
 # find the line "void PdfExportTest::testSofthyphenPos()" (around 600)
@@ -122,6 +104,9 @@ RUN sed -i '609s/#if !defined MACOSX && !defined _WIN32/#if defined MACOSX \&\& 
 
 # this will take 30 minutes to 2 hours to compile, depends on your machine
 RUN make
+
+USER root
+WORKDIR /tmp/libreoffice
 
 # this will remove ~100 MB of symbols from shared objects
 # strip will always return exit code 1 as it generates file warnings when hitting directories
@@ -135,16 +120,29 @@ RUN rm -rf ./instdir/share/gallery \
     ./instdir/LICENSE* \
     ./instdir/NOTICE
 
-# test if compilation was successful
-RUN echo "hello world" > a.txt \
-    && ./instdir/program/soffice --headless --invisible --nodefault --nofirststartwizard \
-        --nolockcheck --nologo --norestore --convert-to pdf --outdir $(pwd) a.txt
+# install required tooling for shared object handling
+RUN yum install -y rpmdevtools
+WORKDIR /tmp/rpms
+
+# add shared objects that are missing in the aws lambda docker container
+RUN yumdownloader libxslt.x86_64 fontconfig.x86_64 freetype.x86_64 libpng.x86_64
+
+# add shared object that are missing the aws lambda runtime
+RUN yumdownloader libxml2.x86_64 expat.x86_64 libuuid.x86_64 xz-libs.x86_64 bzip2-libs.x86_64 libgcrypt.x86_64 libgpg-error.x86_64
+
+# extract and add shared objects to program folder
+RUN rpmdev-extract *.rpm
+WORKDIR /tmp
+RUN mv ./rpms/*/usr/lib64/* ./libreoffice/instdir/program
+RUN mv ./rpms/*/lib64/* ./libreoffice/instdir/program
+
+WORKDIR /tmp/libreoffice
 
 RUN tar -cvf /tmp/lo.tar instdir/
 
-FROM amazonlinux:2.0.20190508 as brotli
+FROM public.ecr.aws/lambda/nodejs:14.2022.02.01.09-x86_64 as brotli
 
-ENV BROTLI_VERSION=1.0.7
+ENV BROTLI_VERSION=1.0.9
 
 WORKDIR /tmp
 
@@ -162,6 +160,9 @@ COPY --from=lobuild /tmp/lo.tar .
 
 RUN brotli --best /tmp/lo.tar && zip -r layers.zip lo.tar.br
 
-FROM amazonlinux:2.0.20190508
+FROM public.ecr.aws/lambda/nodejs:14.2022.02.01.09-x86_64
 
 COPY --from=brotli /tmp/layers.zip /tmp
+
+# overwrite entrypoint as aws base image tries to run a handler function
+ENTRYPOINT []
